@@ -1,10 +1,6 @@
 import "./config/env.js";
 import express from "express";
 import cors from "cors";
-import passport from "passport";
-import { configurePassport } from "./config/passport.js";
-import userRoutes from "./routes/userRoutes.js";
-import authRoutes from "./routes/authRoutes.js";
 import errorHandler from "./middleware/errorHandler.js";
 
 const app = express();
@@ -19,14 +15,10 @@ app.use(
 // parse JSON payload into req.body
 app.use(express.json());
 
-// setup passport
-configurePassport();
-app.use(passport.initialize());
-
 // Health check
 app.get("/", (req, res) => {
 	res.json({
-		name: "expressAPI",
+		name: "Where's Waldo by See-Monkey",
 		version: "1.0.0",
 		status: "OK",
 	});
@@ -34,7 +26,6 @@ app.get("/", (req, res) => {
 
 // custom routers
 app.use("/api/auth", authRoutes);
-app.use("/api/users", userRoutes);
 
 // 404 for no routes found
 app.use((req, res) => {

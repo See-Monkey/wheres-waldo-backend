@@ -1,8 +1,8 @@
 {
-	"name": "template-express-api",
+	"name": "wheres-waldo-backend",
 	"version": "1.0.0",
 	"type": "module",
-	"description": "Express PostgreSQL Passport JWT Prisma REST",
+	"description": "Express PostgreSQL Prisma REST",
 	"main": "app.js",
 	"scripts": {
 		"test": "NODE_ENV=test node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand",
@@ -23,14 +23,14 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/See-Monkey/template-express-api.git"
+		"url": "git+https://github.com/See-Monkey/wheres-waldo-backend.git"
 	},
 	"author": "",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/See-Monkey/template-express-api/issues"
+		"url": "https://github.com/See-Monkey/wheres-waldo-backend/issues"
 	},
-	"homepage": "https://github.com/See-Monkey/template-express-api#readme",
+	"homepage": "https://github.com/See-Monkey/wheres-waldo-backend#readme",
 	"dependencies": {
 		"@prisma/adapter-pg": "^7.4.0",
 		"@prisma/client": "^7.4.0",
@@ -39,9 +39,6 @@
 		"dotenv": "^17.2.4",
 		"express": "^5.2.1",
 		"express-validator": "^7.3.1",
-		"jsonwebtoken": "^9.0.3",
-		"passport": "^0.7.0",
-		"passport-jwt": "^4.0.1",
 		"pg": "^8.18.0"
 	},
 	"devDependencies": {
