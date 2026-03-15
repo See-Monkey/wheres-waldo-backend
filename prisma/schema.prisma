@@ -7,29 +7,60 @@ datasource db {
   provider = "postgresql"
 }
 
-enum Role {
-  USER
-  ADMIN
+model Character {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  locations CharacterLocation[]
 }
 
-model User {
-  id         String      @id @default(uuid())
-  username   String   @unique
-  password   String
-  firstname  String?
-  lastname   String?
-  role       Role   @default(USER)
-  avatarUrl  String?
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  posts      Post[]
+model Image {
+  id    Int    @id @default(autoincrement())
+  title String @unique
+
+  locations          CharacterLocation[]
+  leaderboardEntries LeaderboardEntry[]
+  sessions           GameSession[]
 }
 
-model Post {
-  id        String     @id @default(uuid())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  String
+model CharacterLocation {
+  id Int @id @default(autoincrement())
+
+  character   Character @relation(fields: [characterId], references: [id])
+  characterId Int
+
+  image   Image @relation(fields: [imageId], references: [id])
+  imageId Int
+
+  x      Float
+  y      Float
+
+  @@unique([characterId, imageId])
+}
+
+model LeaderboardEntry {
+  id Int @id @default(autoincrement())
+
+  image   Image @relation(fields: [imageId], references: [id])
+  imageId Int
+
+  session   GameSession @relation(fields: [sessionId], references: [id])
+  sessionId String @unique
+
+  player         String
+  completionTime Float
+  createdAt      DateTime @default(now())
+}
+
+model GameSession {
+  id String @id @default(uuid())
+
+  image   Image @relation(fields: [imageId], references: [id])
+  imageId Int
+
+  leaderboardEntry LeaderboardEntry?
+
+  startTime      DateTime @default(now())
+  endTime        DateTime?
+  completionTime Float?
 }
