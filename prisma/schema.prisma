@@ -38,6 +38,19 @@ model CharacterLocation {
   @@unique([characterId, imageId])
 }
 
+model GameSession {
+  id String @id @default(uuid())
+
+  image   Image @relation(fields: [imageId], references: [id])
+  imageId Int
+
+  leaderboardEntry LeaderboardEntry?
+
+  startTime      DateTime @default(now())
+  endTime        DateTime?
+  completionTime Float?
+}
+
 model LeaderboardEntry {
   id Int @id @default(autoincrement())
 
@@ -50,17 +63,4 @@ model LeaderboardEntry {
   player         String
   completionTime Float
   createdAt      DateTime @default(now())
-}
-
-model GameSession {
-  id String @id @default(uuid())
-
-  image   Image @relation(fields: [imageId], references: [id])
-  imageId Int
-
-  leaderboardEntry LeaderboardEntry?
-
-  startTime      DateTime @default(now())
-  endTime        DateTime?
-  completionTime Float?
 }
