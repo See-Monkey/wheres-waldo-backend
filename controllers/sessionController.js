@@ -14,14 +14,16 @@ async function startSession(req, res, next) {
 
 async function guess(req, res, next) {
 	try {
-		const session = await sessionService.getSession(req.params.sessionId);
-		if (!session) {
-			return res.status(404).json({ message: "Session not found" });
-		}
+		const sessionId = req.params.sessionId;
 
 		const { characterName, x, y } = req.body;
 
-		const guessedCharacters = sessionService.guess(characterName, x, y);
+		const guessedCharacters = sessionService.guess(
+			sessionId,
+			characterName,
+			x,
+			y,
+		);
 
 		res.json(guessedCharacters);
 	} catch (err) {
