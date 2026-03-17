@@ -2,6 +2,8 @@ import "./config/env.js";
 import express from "express";
 import cors from "cors";
 import errorHandler from "./middleware/errorHandler.js";
+import sessionRoutes from "./routes/sessionRoutes.js";
+import leaderboardRoutes from "./routes/leaderboardRoutes.js";
 
 const app = express();
 
@@ -25,7 +27,8 @@ app.get("/", (req, res) => {
 });
 
 // custom routers
-app.use("/api/auth", authRoutes);
+app.use("/session", sessionRoutes);
+app.use("/leaderboard", leaderboardRoutes);
 
 // 404 for no routes found
 app.use((req, res) => {
