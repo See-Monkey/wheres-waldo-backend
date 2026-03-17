@@ -4,7 +4,7 @@ import leaderboardController from "../controllers/leaderboardController.js";
 const router = Router();
 
 // Get leaderboard for an image
-router.get("/:imageId", leaderboardController.getTopTen);
+router.get("/:imageId", leaderboardController.getLeaderboard);
 
 // Sumbit leaderboard entry
 router.get("/:imageId", leaderboardController.submitEntry);
