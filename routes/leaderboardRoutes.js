@@ -7,6 +7,6 @@ const router = Router();
 router.get("/:imageId", leaderboardController.getLeaderboard);
 
 // Sumbit leaderboard entry
-router.get("/:imageId", leaderboardController.submitEntry);
+router.post("/:imageId", leaderboardController.submitEntry);
 
 export default router;

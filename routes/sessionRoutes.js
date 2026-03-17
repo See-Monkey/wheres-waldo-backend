@@ -4,7 +4,7 @@ import sessionController from "../controllers/sessionController.js";
 const router = Router();
 
 // Start a new session
-router.post("/:imageId", sessionController.startSession);
+router.post("/start/:imageId", sessionController.startSession);
 
 // Guess a character location
 router.post("/:sessionId/guess", sessionController.guess);
