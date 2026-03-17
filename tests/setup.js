@@ -1,10 +1,11 @@
 import { prisma } from "../config/prisma.js";
 
 beforeEach(async () => {
-	// Clean all tables before every test
-	// NEEDS CUSTOMIZED
-	await prisma.post.deleteMany();
-	await prisma.user.deleteMany();
+	await prisma.characterLocation.deleteMany();
+	await prisma.gameSession.deleteMany();
+	await prisma.leaderboardEntry.deleteMany();
+	await prisma.character.deleteMany();
+	await prisma.image.deleteMany();
 });
 
 afterAll(async () => {
