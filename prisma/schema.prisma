@@ -44,6 +44,8 @@ model GameSession {
   image   Image @relation(fields: [imageId], references: [id])
   imageId Int
 
+  guessedCharacters Int[] @default([])
+
   leaderboardEntry LeaderboardEntry?
 
   startTime      DateTime @default(now())
