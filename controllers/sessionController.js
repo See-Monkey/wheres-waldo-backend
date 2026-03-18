@@ -2,7 +2,7 @@ import sessionService from "../services/sessionService.js";
 
 async function startSession(req, res, next) {
 	try {
-		const imageId = req.params.imageId;
+		const imageId = Number(req.params.imageId);
 
 		const session = await sessionService.startSession(imageId);
 

@@ -2,7 +2,7 @@ import leaderboardService from "../services/leaderboardService.js";
 
 async function getLeaderboard(req, res, next) {
 	try {
-		const imageId = req.params.imageId;
+		const imageId = Number(req.params.imageId);
 
 		const leaderboard = await leaderboardService.getTopTen(imageId);
 
@@ -14,7 +14,7 @@ async function getLeaderboard(req, res, next) {
 
 async function submitEntry(req, res, next) {
 	try {
-		const imageId = req.params.imageId;
+		const imageId = Number(req.params.imageId);
 		const { sessionId, player } = req.body;
 
 		await leaderboardService.submitEntry(imageId, sessionId, player);
