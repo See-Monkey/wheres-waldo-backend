@@ -75,13 +75,13 @@ async function guess(sessionId, characterName, guessX, guessY) {
 		where: { imageId: session.imageId },
 	});
 
-	let completionTime = null;
+	let updatedSession;
 
 	if (updatedGuesses.length === totalCharacters) {
 		const endTime = new Date();
-		completionTime = (endTime - new Date(session.startTime)) / 1000;
+		const completionTime = (endTime - new Date(session.startTime)) / 1000;
 
-		await prisma.gameSession.update({
+		updatedSession = await prisma.gameSession.update({
 			where: { id: sessionId },
 			data: {
 				guessedCharacters: updatedGuesses,
@@ -90,11 +90,9 @@ async function guess(sessionId, characterName, guessX, guessY) {
 			},
 		});
 	} else {
-		await prisma.gameSession.update({
+		updatedSession = await prisma.gameSession.update({
 			where: { id: sessionId },
-			data: {
-				guessedCharacters: updatedGuesses,
-			},
+			data: { guessedCharacters: updatedGuesses },
 		});
 	}
 
@@ -103,7 +101,7 @@ async function guess(sessionId, characterName, guessX, guessY) {
 	return {
 		correct: true,
 		guessedCharacters: guessedNames,
-		completionTime: session.completionTime ?? null,
+		completionTime: updatedSession.completionTime ?? null,
 	};
 }
 
